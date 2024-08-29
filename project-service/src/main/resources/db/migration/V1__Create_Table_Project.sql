@@ -1,0 +1,20 @@
+CREATE TABLE project (
+                         id BIGINT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+                         name VARCHAR(255) NOT NULL,
+                         geolocation VARCHAR(255) NOT NULL,
+                         date_start DATE NOT NULL,
+                         date_end DATE NOT NULL,
+                         status ENUM('TODO', 'IN_PROGRESS', 'COMPLETED') NOT NULL,
+                         description TEXT NOT NULL,
+                         room INT NOT NULL,
+                         bath INT NOT NULL,
+                         garage INT NOT NULL,
+                         terrace INT NOT NULL,
+                         wall_material VARCHAR(255) NOT NULL,
+                         foundation_type VARCHAR(255) NOT NULL,
+                         roofing_type VARCHAR(255) NOT NULL,
+                         area_size DOUBLE NOT NULL,
+                         budget DOUBLE NOT NULL,
+                         plan_floor VARCHAR(255) NOT NULL,
+                         picture VARCHAR(255) NOT NULL
+);
