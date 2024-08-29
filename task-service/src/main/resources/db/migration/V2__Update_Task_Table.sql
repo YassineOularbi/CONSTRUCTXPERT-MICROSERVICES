@@ -1,0 +1,1 @@
+ALTER TABLE task ADD resource_ids VARCHAR(255);
