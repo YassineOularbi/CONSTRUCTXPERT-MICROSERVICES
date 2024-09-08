@@ -13,6 +13,7 @@
 	<description>Parent project for ConstructionXpert Services</description>
 
 	<modules>
+		<module>api-gateway-service</module>
 		<module>eureka-server</module>
 		<module>project-service</module>
 		<module>task-service</module>
