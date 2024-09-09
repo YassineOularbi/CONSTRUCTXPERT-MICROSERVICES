@@ -1,16 +1,16 @@
 package com.project_service.config;
 
 import com.project_service.client.FeignRequestInterceptor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import feign.RequestInterceptor;
 
 @Configuration
-@RequiredArgsConstructor
 public class FeignClientConfiguration {
 
     @Bean
-    public FeignRequestInterceptor feignRequestInterceptor() {
+    public RequestInterceptor feignRequestInterceptor() {
         return new FeignRequestInterceptor();
     }
 }
+

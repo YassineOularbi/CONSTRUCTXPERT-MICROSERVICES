@@ -155,7 +155,7 @@ public class AuthorizationGatewayFilterFactory extends AbstractGatewayFilterFact
         private String userServicePathPrefix = "/USER-SERVICE/api/";
         private String userServiceGetAllUserPathPrefix = "/USER-SERVICE/api/user/get-all-users";
         private String userServiceGetUserByIdPathPrefix = "/USER-SERVICE/api/user/get-user-by-id";
-        private String userServiceGetUserByUsernamePathPrefix = "/USER-SERVICE/api/user/get-user-by-id";
+        private String userServiceGetUserByUsernamePathPrefix = "/USER-SERVICE/api/user/get-user-by-username";
         private String userServiceAdminPathPrefix = "/USER-SERVICE/api/admin/";
         private String userServiceSupervisorPathPrefix = "/USER-SERVICE/api/supervisor/";
         private String userServiceClientPathPrefix = "/USER-SERVICE/api/client/";
