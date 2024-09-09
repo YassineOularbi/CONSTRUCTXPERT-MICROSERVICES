@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.reactive.config.EnableWebFlux;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.api_gateway_service")
 @EnableDiscoveryClient
 @EnableWebFlux
 @OpenAPIDefinition(info = @Info(title = "API Gateway", version = "1.0", description = "Documentation API Gateway v1.0"))

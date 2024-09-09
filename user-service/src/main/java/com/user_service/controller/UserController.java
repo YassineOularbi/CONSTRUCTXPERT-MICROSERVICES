@@ -1,10 +1,13 @@
 package com.user_service.controller;
 
+import com.user_service.model.User;
 import com.user_service.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/user")
@@ -32,5 +35,10 @@ public class UserController {
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
+    }
+
+    @GetMapping("/get-user-by-username/{username}")
+    public Optional<User> getUserByUsername(@PathVariable String username) {
+        return userService.findByUsername(username);
     }
 }

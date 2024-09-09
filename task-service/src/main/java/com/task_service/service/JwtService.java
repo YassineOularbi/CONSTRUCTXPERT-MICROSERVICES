@@ -1,23 +1,16 @@
-package com.user_service.service;
+package com.task_service.service;
 
-import com.user_service.dto.UserDto;
-import com.user_service.model.User;
+import com.task_service.model.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
-import java.time.temporal.ChronoUnit;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.function.Function;
-
-import static java.time.Instant.now;
 
 @Component
 public class JwtService {
@@ -62,21 +55,6 @@ public class JwtService {
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
-    public String generateToken(User user) {
-        Map<String, Object> claims = new HashMap<>();
-        claims.put("role", user.getRole().name());
-        claims.put("user", user);
-        return createToken(claims, user.getUsername());
-    }
-
-    private String createToken(Map<String, Object> claims, String username) {
-        return Jwts.builder()
-                .setClaims(claims)
-                .setSubject(username)
-                .setIssuedAt(Date.from(now()))
-                .setExpiration(Date.from(now().plus(24 * 60, ChronoUnit.MINUTES)))
-                .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
-    }
 
     private Key getSignKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET);

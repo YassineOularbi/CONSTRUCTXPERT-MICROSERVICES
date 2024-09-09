@@ -44,7 +44,7 @@ public class AuthenticationService {
                     new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword())
             );
             return AuthenticationResponse.builder()
-                    .token(jwtService.generateToken(userMapper.toDto((User) authentication.getPrincipal())))
+                    .token(jwtService.generateToken((User) authentication.getPrincipal()))
                     .build();
         } catch (BadCredentialsException e) {
             throw LoginException.invalidCredentials();
@@ -63,7 +63,7 @@ public class AuthenticationService {
         var admin = (Admin) userMapper.toEntity(registerRequest);
         admin.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
         return AuthenticationResponse.builder()
-                .token(jwtService.generateToken(userMapper.toDto(adminRepository.save(admin))))
+                .token(jwtService.generateToken(adminRepository.save(admin)))
                 .build();
     }
 
@@ -74,7 +74,7 @@ public class AuthenticationService {
         var client = (Client) userMapper.toEntity(registerRequest);
         client.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
         return AuthenticationResponse.builder()
-                .token(jwtService.generateToken(userMapper.toDto(clientRepository.save(client))))
+                .token(jwtService.generateToken(clientRepository.save(client)))
                 .build();
     }
 
@@ -85,7 +85,7 @@ public class AuthenticationService {
         var supervisor = (Supervisor) userMapper.toEntity(registerRequest);
         supervisor.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
         return AuthenticationResponse.builder()
-                .token(jwtService.generateToken(userMapper.toDto(supervisorRepository.save(supervisor))))
+                .token(jwtService.generateToken(supervisorRepository.save(supervisor)))
                 .build();
     }
 
