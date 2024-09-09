@@ -13,7 +13,6 @@ public class RouteValidator {
 
     private static final List<String> PUBLIC_API_ENDPOINTS_PATTERNS = List.of(
             ("/api/auth"),
-            ("/api/user"),
             ("/swagger-ui"),
             ("/swagger-ui.html"),
             ("/v3/api-docs"),

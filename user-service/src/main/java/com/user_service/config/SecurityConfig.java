@@ -25,8 +25,9 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**", "/api/auth/**", "/api/user/**").permitAll()
-                                .requestMatchers("/api/admin/**").hasAuthority(Role.ADMIN.name())
+                                .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**", "/api/auth/**").permitAll()
+                                .requestMatchers("/api/admin/**", "api/user/get-all-users/**", "api/user/get-user-by-id/**").hasAuthority(Role.ADMIN.name())
+                                .requestMatchers("/api/user/get-user-by-username/**").authenticated()
                                 .requestMatchers("/api/client/**").hasAnyAuthority(Role.CLIENT.name(), Role.ADMIN.name())
                                 .requestMatchers("/api/supervisor/**").hasAnyAuthority(Role.SUPERVISOR.name(), Role.ADMIN.name())
                                 .anyRequest().permitAll()

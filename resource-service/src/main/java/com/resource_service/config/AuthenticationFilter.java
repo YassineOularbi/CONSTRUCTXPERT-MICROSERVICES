@@ -1,5 +1,6 @@
 package com.resource_service.config;
 
+import com.resource_service.client.RequestContext;
 import com.resource_service.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -39,12 +40,16 @@ public class AuthenticationFilter extends OncePerRequestFilter {
             SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role);
             UserDetails userDetails = new User(username, "", Collections.singleton(authority));
             if (jwtService.validateToken(token, userDetails)) {
+                RequestContext.setJwtToken(token);
                 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, token, Collections.singleton(authority));
                 authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);
             }
         }
-
-        filterChain.doFilter(request, response);
+        try {
+            filterChain.doFilter(request, response);
+        } finally {
+            RequestContext.clear();
+        }
     }
 }
