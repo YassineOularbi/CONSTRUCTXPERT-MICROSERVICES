@@ -20,6 +20,7 @@ public class User implements UserDetails, Serializable {
     private Long id;
     private String username;
     private String password;
+    private String email;
     private Role role;
     private String profilePicture;
 

@@ -6,11 +6,13 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 @Component
+@Order(2)
 public class AuthorizationGatewayFilterFactory extends AbstractGatewayFilterFactory<AuthorizationGatewayFilterFactory.Config> {
 
     private final JwtService jwtService;
@@ -22,6 +24,7 @@ public class AuthorizationGatewayFilterFactory extends AbstractGatewayFilterFact
 
     @Override
     public GatewayFilter apply(Config config) {
+        System.out.println("dkheeeeel");
         return (exchange, chain) -> {
             String path = exchange.getRequest().getPath().toString();
             if (!isAuthorized(path, exchange, config)) {
@@ -32,7 +35,9 @@ public class AuthorizationGatewayFilterFactory extends AbstractGatewayFilterFact
     }
 
     private boolean isAuthorized(String path, ServerWebExchange exchange, Config config) {
+        System.out.println("hahwaaa");
         if (path.startsWith(config.getUserServicePathPrefix())) {
+            System.out.println("f useer");
             return checkUserServiceAuthorization(path, exchange, config);
         }
         if (path.startsWith(config.getTaskServicePathPrefix())) {
@@ -49,12 +54,15 @@ public class AuthorizationGatewayFilterFactory extends AbstractGatewayFilterFact
 
     private boolean checkUserServiceAuthorization(String path, ServerWebExchange exchange, Config config) {
         if (path.matches(STR."\{config.getUserServiceAdminPathPrefix()}.*")) {
+            System.out.println("3nd admin");
             return userHasRole(exchange, config.getAdminRole());
         }
         if (path.matches(STR."\{config.getUserServiceSupervisorPathPrefix()}.*")) {
+            System.out.println("3nd super");
             return userHasRole(exchange, config.getSupervisorRole()) || userHasRole(exchange, config.getAdminRole());
         }
         if (path.matches(STR."\{config.getUserServiceClientPathPrefix()}.*")) {
+            System.out.println("3nd client");
             return userHasRole(exchange, config.getClientRole()) ||  userHasRole(exchange, config.getAdminRole());
         }
         return true;
@@ -122,6 +130,7 @@ public class AuthorizationGatewayFilterFactory extends AbstractGatewayFilterFact
     }
 
     private boolean userHasRole(ServerWebExchange exchange, String requiredRole) {
+        System.out.println("f hasRole");
         String token = exchange.getRequest().getHeaders().getFirst("Authorization");
         if (token != null && token.startsWith("Bearer ")) {
             token = token.substring(7);

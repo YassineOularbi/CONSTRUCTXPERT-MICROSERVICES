@@ -21,19 +21,10 @@ public class ApplicationConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> {
-            try {
-                var user = userClient.getUserByUsername(username);
-                return org.springframework.security.core.userdetails.User.builder()
-                        .username(user.getUsername())
-                        .password(user.getPassword())
-                        .roles(user.getRole().name())
-                        .build();
-            } catch (Exception e) {
-                throw new UsernameNotFoundException("User not found!");
-            }
-        };
+        return username -> userClient.getUserByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found!"));
     }
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {

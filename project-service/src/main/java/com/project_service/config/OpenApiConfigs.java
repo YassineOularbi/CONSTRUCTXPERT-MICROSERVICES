@@ -17,9 +17,9 @@ import java.util.List;
 @Configuration
 @OpenAPIDefinition(
         info = @Info(
-                title = "Project Service API",
+                title = "Resource Service API",
                 version = "v1",
-                description = "API documentation for the Project Service",
+                description = "API documentation for the Resource Service",
                 license = @License(name = "Apache 2.0", url = "http://springdoc.org")
         ),
         security = @SecurityRequirement(name = "Bearer Authentication")

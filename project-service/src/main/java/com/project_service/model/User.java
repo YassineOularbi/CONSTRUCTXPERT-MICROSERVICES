@@ -17,11 +17,11 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User implements UserDetails, Serializable {
-
+public class User implements Serializable, UserDetails {
     private Long id;
     private String username;
     private String password;
+    private String email;
     private Role role;
     private String profilePicture;
 

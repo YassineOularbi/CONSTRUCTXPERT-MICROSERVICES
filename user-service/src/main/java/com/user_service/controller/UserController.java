@@ -38,7 +38,12 @@ public class UserController {
     }
 
     @GetMapping("/get-user-by-username/{username}")
-    public Optional<User> getUserByUsername(@PathVariable String username) {
-        return userService.findByUsername(username);
+    public ResponseEntity<?> getUserByUsername(@PathVariable("username") String username) {
+        try {
+            var user = userService.findByUsername(username);
+            return ResponseEntity.ok(user);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
     }
 }
