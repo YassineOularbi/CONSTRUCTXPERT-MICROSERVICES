@@ -1,6 +1,5 @@
 package com.user_service.config;
 
-
 import com.user_service.enums.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -26,7 +25,8 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/api/auth/**", "/v3/api-docs/**", "/swagger-ui/**").permitAll()
+                                .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
+                                .requestMatchers("/api/auth/**").permitAll()
                                 .requestMatchers("/api/admin/**", "/api/user/**").hasAuthority(Role.ADMIN.name())
                                 .requestMatchers("/api/client/**").hasAuthority(Role.CLIENT.name())
                                 .requestMatchers("/api/supervisor/**").hasAuthority(Role.SUPERVISOR.name())
