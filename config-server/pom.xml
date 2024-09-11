@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -10,10 +11,10 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<artifactId>api-gateway-service</artifactId>
+	<artifactId>config-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>api-gateway-service</name>
-	<description>Api Gateway Service module for ConstructionXpert</description>
+	<name>config-server</name>
+	<description>Config Server module for ConstructionXpert</description>
 
 	<properties>
 		<java.version>22</java.version>
@@ -24,18 +25,7 @@
 
 	<dependencies>
 
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-gateway</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-		</dependency>
-
 	</dependencies>
-
 
 	<build>
 		<plugins>
@@ -45,5 +35,6 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
+
+
