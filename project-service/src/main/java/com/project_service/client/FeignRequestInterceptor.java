@@ -5,7 +5,6 @@ import feign.RequestTemplate;
 import jakarta.ws.rs.core.HttpHeaders;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Component;
-import org.springframework.web.server.ServerWebExchange;
 
 @Component
 @RefreshScope

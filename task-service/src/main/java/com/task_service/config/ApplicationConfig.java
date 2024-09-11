@@ -1,6 +1,7 @@
 package com.task_service.config;
 
 import com.task_service.client.UserClient;
+import com.task_service.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +14,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.ArrayList;
+import java.util.Optional;
+
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfig {
@@ -21,8 +25,23 @@ public class ApplicationConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> userClient.getUserByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found!"));
+        return username -> {
+            try {
+                Optional<User> user = userClient.getUserByUsername(username);
+
+                if (user.isPresent()) {
+                    return new org.springframework.security.core.userdetails.User(
+                            user.get().getUsername(),
+                            user.get().getPassword(),
+                            new ArrayList<>()
+                    );
+                } else {
+                    throw new UsernameNotFoundException("User not found!");
+                }
+            } catch (Exception e) {
+                throw new UsernameNotFoundException("Service is temporarily unavailable.");
+            }
+        };
     }
 
     @Bean
