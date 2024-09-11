@@ -11,10 +11,5 @@ spring:
   autoconfigure:
     exclude:
       - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
-      - org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration
 server:
   port: 8888
-logging:
-  level:
-    org.springframework.cloud: DEBUG
-    org.springframework.web: DEBUG

@@ -7,64 +7,32 @@ spring:
   autoconfigure:
     exclude:
       - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
-      - org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration
-  cloud:
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-      httpserver:
-        wiretap: true
-      httpclient:
-        wiretap: true
-    loadbalancer:
-      retry:
-        enabled: true
-  doc:
-    api-docs:
-      enabled: true
-      path: /v3/api-docs
-    swagger-ui:
-      enabled: true
-      path: /swagger-ui.html
-      config-url: /v3/api-docs/swagger-config
-      urls:
-        - url: /PROJECT-SERVICE/v3/api-docs
-          name: PROJECT-SERVICE
-        - url: /TASK-SERVICE/v3/api-docs
-          name: TASK-SERVICE
-        - url: /RESOURCE-SERVICE/v3/api-docs
-          name: RESOURCE-SERVICE
-        - url: /USER-SERVICE/v3/api-docs
-          name: USER-SERVICE
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    config-url: /v3/api-docs/swagger-config
+    urls:
+      - url: /PROJECT-SERVICE/v3/api-docs
+        name: PROJECT-SERVICE
+      - url: /TASK-SERVICE/v3/api-docs
+        name: TASK-SERVICE
+      - url: /RESOURCE-SERVICE/v3/api-docs
+        name: RESOURCE-SERVICE
+      - url: /USER-SERVICE/v3/api-docs
+        name: USER-SERVICE
 
 server:
   port: 9191
 
 eureka:
   client:
-    serviceUrl:
+    service-url:
       defaultZone: http://admin:admin@localhost:8761/eureka/
     register-with-eureka: true
     fetch-registry: true
   instance:
     prefer-ip-address: true
-    lease-renewal-interval-in-seconds: 30
-    lease-expiration-duration-in-seconds: 90
-
-management:
-  endpoint:
-    gateway:
-      enabled: true
-  endpoints:
-    web:
-      exposure:
-        include: gateway
-
-logging:
-  level:
-    org.springframework.cloud.loadbalancer: trace
-    org.springframework.cloud.gateway: DEBUG
-  output:
-    ansi:
-      enabled: always

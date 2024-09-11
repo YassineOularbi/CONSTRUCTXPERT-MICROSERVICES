@@ -5,12 +5,12 @@ spring:
     user:
       name: admin
       password: admin
+      roles: USER
   main:
     allow-bean-definition-overriding: true
   autoconfigure:
     exclude:
       - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
-      - org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration
 server:
   port: 8761
 eureka:
@@ -19,3 +19,4 @@ eureka:
     fetch-registry: false
   server:
     enable-self-preservation: true
+    wait-time-in-ms-when-sync-empty: 0

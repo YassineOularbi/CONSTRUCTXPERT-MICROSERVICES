@@ -15,19 +15,23 @@ spring:
     enabled: true
   main:
     allow-bean-definition-overriding: true
-  doc:
-    api-docs:
-      path: /v3/api-docs
-    swagger-ui:
-      path: /swagger-ui.html
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
 
 server:
   port: 8081
 
 eureka:
   client:
-    serviceUrl:
+    service-url:
       defaultZone: http://admin:admin@localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
 
 openapi:
   service:
