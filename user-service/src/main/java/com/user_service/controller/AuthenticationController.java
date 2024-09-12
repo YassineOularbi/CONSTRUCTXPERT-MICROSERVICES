@@ -6,14 +6,14 @@ import com.user_service.dto.ClientDto;
 import com.user_service.dto.SupervisorDto;
 import com.user_service.exception.RegistrationException;
 import com.user_service.service.AuthenticationService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@AllArgsConstructor
-@RequestMapping(path = "/api/auth")
+@RequiredArgsConstructor
+@RequestMapping("/api/auth")
 @CrossOrigin("*")
 public class AuthenticationController {
 

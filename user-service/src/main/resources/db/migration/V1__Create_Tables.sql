@@ -1,4 +1,4 @@
-
+CREATE DATABASE IF NOT EXISTS constructxpert_user_db;
 CREATE TABLE admin (
                        id BIGINT NOT NULL,
                        PRIMARY KEY (id)

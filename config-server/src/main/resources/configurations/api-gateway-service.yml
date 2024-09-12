@@ -7,6 +7,7 @@ spring:
   autoconfigure:
     exclude:
       - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration
 springdoc:
   api-docs:
     enabled: true
@@ -31,7 +32,7 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://admin:admin@localhost:8761/eureka/
+      defaultZone: http://admin:admin@eureka-server:8761/eureka/
     register-with-eureka: true
     fetch-registry: true
   instance:

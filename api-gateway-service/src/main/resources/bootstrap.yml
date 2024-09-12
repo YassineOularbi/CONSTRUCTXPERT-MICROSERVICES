@@ -2,7 +2,18 @@ spring:
   application:
     name: api-gateway-service
   config:
-    import: optional:configserver:http://localhost:8888
+    import: optional:configserver:http://config-server:8888
   cloud:
     config:
       enabled: true
+      uri: http://config-server:8888
+      failFast: true
+      retry:
+        maxAttempts: 20
+    gateway:
+      global-cors:
+        cors-configurations:
+          '[/**]':
+            allowedOriginPatterns: "*"
+            allowedMethods: "*"
+            allowCredentials: true
